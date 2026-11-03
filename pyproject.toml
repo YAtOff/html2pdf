@@ -1,0 +1,35 @@
+[build-system]
+requires = ["maturin>=1.7,<2"]
+build-backend = "maturin"
+
+[project]
+name = "html2pdf"
+version = "0.1.0"
+description = "Convert HTML text to PDF — single purpose, Rust core, no system dependencies"
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.11"
+keywords = ["html", "pdf", "converter"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Rust",
+    "Topic :: Text Processing :: Markup :: HTML",
+    "Topic :: Printing",
+]
+
+[project.scripts]
+html2pdf = "html2pdf:main"
+
+[tool.maturin]
+# Extension module lives INSIDE the html2pdf python package
+# (html2pdf/_html2pdf*.so), matching `from ._html2pdf import convert`
+# in html2pdf/__init__.py. A bare "_html2pdf" makes maturin look for a
+# top-level python module _html2pdf/ and the build fails.
+module-name = "html2pdf._html2pdf"
+python-source = "."
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

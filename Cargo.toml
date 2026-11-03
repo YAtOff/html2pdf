@@ -1,0 +1,22 @@
+[package]
+name = "html2pdf"
+version = "0.1.0"
+edition = "2021"
+description = "Convert HTML text to PDF (PyO3 extension core)"
+license = "MIT"
+
+[lib]
+name = "_html2pdf"
+crate-type = ["cdylib"]
+
+[dependencies]
+pyo3 = { version = "0.30", features = ["extension-module"] }
+scraper = "0.29"
+ttf-parser = "0.25"
+# `variable-fonts` (default) pulls skrifa/write-fonts/kurbo for CFF2/variable
+# instancing, which the static DejaVu TrueType faces never need.
+subsetter = { version = "0.2", default-features = false }
+miniz_oxide = "0.9"
+# pdf-writer 0.15 declares no cargo features at all: `compress` does not exist.
+# Filter::FlateDecode is always available, so no feature list is needed.
+pdf-writer = "0.15"
