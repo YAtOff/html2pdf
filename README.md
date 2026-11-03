@@ -27,7 +27,7 @@ substitution surprises. `html2pdf` takes the opposite trade-off:
 ## Install
 
 ```bash
-pip install html2pdf
+pip install html2pdf.py
 ```
 
 Python 3.9+ is supported. Building from source requires Rust and [maturin]:
@@ -35,7 +35,7 @@ Python 3.9+ is supported. Building from source requires Rust and [maturin]:
 ```bash
 pip install maturin
 maturin build --release        # produces a wheel in dist/
-pip install dist/html2pdf-*.whl
+pip install dist/html2pdf_py-*.whl
 # or, for development: maturin develop
 ```
 
@@ -45,12 +45,12 @@ With [uv] and a Rust toolchain installed, set up the environment and build
 the extension in one step:
 
 ```bash
-uv sync                  # creates .venv and builds/installs html2pdf (editable)
+uv sync                  # creates .venv and builds/installs html2pdf.py (editable)
 uv run html2pdf input.html out.pdf
 uv run python -c "import html2pdf; print(html2pdf.convert('<p>Hi</p>')[:4])"
 ```
 
-After changing Rust code, rebuild with `uv sync --reinstall-package html2pdf`.
+After changing Rust code, rebuild with `uv sync --reinstall-package html2pdf-py`.
 To build distributable artifacts (sdist and wheel in `dist/`):
 
 ```bash

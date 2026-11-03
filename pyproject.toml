@@ -3,7 +3,7 @@ requires = ["maturin>=1.7,<2"]
 build-backend = "maturin"
 
 [project]
-name = "html2pdf"
+name = "html2pdf.py"
 version = "0.1.0"
 description = "Convert HTML text to PDF — single purpose, Rust core, no system dependencies"
 readme = "README.md"
