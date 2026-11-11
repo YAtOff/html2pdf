@@ -112,7 +112,7 @@ def bold_doc() -> bytes:
 
 
 def test_version():
-    assert html2pdf.__version__ == "0.1.0"
+    assert html2pdf.__version__ == "0.1.1"
 
 
 def test_imports_resolve_to_the_installed_wheel():

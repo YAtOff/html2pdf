@@ -4,7 +4,7 @@ build-backend = "maturin"
 
 [project]
 name = "html2pdf.py"
-version = "0.1.0"
+version = "0.1.1"
 description = "Convert HTML text to PDF — single purpose, Rust core, no system dependencies"
 readme = "README.md"
 license = { text = "MIT" }

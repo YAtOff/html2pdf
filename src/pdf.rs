@@ -21,7 +21,7 @@ use subsetter::{subset, GlyphRemapper};
 
 /// Producer string for the document information dictionary. No timestamps are
 /// written so that identical input yields identical output.
-const PRODUCER: &str = "html2pdf 0.1.0 (Rust, pdf-writer; DejaVu fonts)";
+const PRODUCER: &str = "html2pdf 0.1.1 (Rust, pdf-writer; DejaVu fonts)";
 
 /// The identity CIDSystemInfo shared by the descendant fonts and ToUnicode maps.
 const IDENTITY_SYSINFO: SystemInfo<'static> = SystemInfo {

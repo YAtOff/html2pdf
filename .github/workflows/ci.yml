@@ -2,8 +2,7 @@ name: CI
 
 on:
   push:
-    branches: [main]
-    tags: ["v*"]
+    branches: [main, master]
   pull_request:
 
 permissions:
@@ -16,7 +15,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python: ["3.10", "3.13"]
+        python: ["3.11", "3.13"]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -29,42 +28,3 @@ jobs:
         run: maturin develop --release
       - name: Run tests
         run: pytest -v
-
-  wheels:
-    name: Wheels (${{ matrix.os }})
-    needs: test
-    if: startsWith(github.ref, 'refs/tags/v') || github.ref == 'refs/heads/main'
-    runs-on: ${{ matrix.os }}
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
-    steps:
-      - uses: actions/checkout@v4
-      - uses: PyO3/maturin-action@v1
-        with:
-          args: --release --out dist --find-interpreter
-          sccache: true
-          manylinux: auto
-      # No system packages required: the Rust core and the DejaVu fonts are
-      # vendored, so plain runners suffice.
-      - uses: actions/upload-artifact@v4
-        with:
-          name: wheels-${{ matrix.os }}
-          path: dist/
-
-  release:
-    name: Publish to PyPI
-    if: startsWith(github.ref, 'refs/tags/v')
-    needs: wheels
-    runs-on: ubuntu-latest
-    environment: pypi
-    permissions:
-      id-token: write # trusted publishing (OIDC)
-    steps:
-      - uses: actions/download-artifact@v4
-        with:
-          pattern: wheels-*
-          path: dist
-          merge-multiple: true
-      - uses: pypa/gh-action-pypi-publish@release/v1

@@ -13,7 +13,7 @@ from typing import Any
 
 from ._html2pdf import convert as _convert
 
-__version__ = "0.1.0"
+__version__ = "0.1.1"
 __all__ = ["convert", "convert_to_file", "main"]
 
 

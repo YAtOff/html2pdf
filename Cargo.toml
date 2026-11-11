@@ -1,6 +1,6 @@
 [package]
 name = "html2pdf"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 description = "Convert HTML text to PDF (PyO3 extension core)"
 license = "MIT"
@@ -10,7 +10,7 @@ name = "_html2pdf"
 crate-type = ["cdylib"]
 
 [dependencies]
-pyo3 = { version = "0.30", features = ["extension-module"] }
+pyo3 = { version = "0.30", features = ["extension-module", "abi3-py311"] }
 scraper = "0.29"
 ttf-parser = "0.25"
 # `variable-fonts` (default) pulls skrifa/write-fonts/kurbo for CFF2/variable
