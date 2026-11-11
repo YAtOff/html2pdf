@@ -75,6 +75,7 @@ jobs:
       - name: Upload assets to GitHub Release
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: gh release upload "${{ github.event.release.tag_name }}" dist/* --clobber
+          GH_REPO: ${{ github.repository }}
+        run: gh release upload "${{ github.event.release.tag_name }}" dist/* --clobber --repo "${{ github.repository }}"
       - name: Publish to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
